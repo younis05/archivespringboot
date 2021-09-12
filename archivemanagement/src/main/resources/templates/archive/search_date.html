@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.themyleaf.org">
+<head th:replace="layout/navbar::html_header">
+	<meta charset="UTF-8" />
+	<title></title>
+
+</head>
+<body>
+	<nav th:replace="layout/navbar::navbar"></nav>
+	<section> 
+	<div class="container">
+		<div class="text-center">
+			<h1>Search Archives</h1>
+		</div>
+		
+		<!--Table Archive-->
+		<table class="table  table-striped table-hover table-bordered mt-2" id="myTable">
+			<thead >  
+			  <tr class="bg-white">
+				<th scope="col" ><a th:href="@{'/archive/page/'+${currentPage}+'?sortField=id&sortDir='+${reverseSortDir}}">ID#</a></th>
+				<th scope="col" ><a th:href="@{'/archive/page/'+${currentPage}+'?sortField=title&sortDir='+${reverseSortDir}}">Title</a></th>
+				<th scope="col"><a th:href="@{'/archive/page/'+${currentPage}+'?sortField=numberArchive&sortDir='+${reverseSortDir}}">Number Archive</a></th>
+				<th scope="col"><a th:href="@{'/archive/page/'+${currentPage}+'?sortField=createDate&sortDir='+${reverseSortDir}}">Date</a></th>
+				<th scope="col"><a th:href="@{'/archive/page/'+${currentPage}+'?sortField=image&sortDir='+${reverseSortDir}}">Image</a></th>
+				<th scope="col"><a th:href="@{'/archive/page/'+${currentPage}+'?sortField=category&sortDir='+${reverseSortDir}}">Category</a></th>
+				<th scope="col"><a href="#">Action</a></th>
+			  </tr>
+			</thead>
+			<tbody>
+			  <tr  th:each="archive,status : ${listArchives}">
+				<th scope="row" th:text="${status.count}"></th>
+				<td th:text="${archive.title}"></td>
+				<td th:text="${archive.numberArchive}"></td>
+				<td th:text="${archive.createDate}"></td>  
+				<td> <img  th:src="@{${archive.image}}" alt="profile photo" class="my_picture" /></td>
+				<td th:text="${archive.category}"></td>
+				<td>
+				  <div class="d-inline-flex">
+				  <a th:href="@{'/archive/'+${archive.id}+'/detail'}" class="btn btn-success btn-sm">Details</a>
+				   <input th:onclick="|deleteArchive(${archive.id})|" type="button" class="btn btn-danger btn-sm" value="Delete" style="margin-right:40px;margin-left:10px">
+				  </div>
+				</td>
+			  </tr>
+			  
+			</tbody>
+		  </table>
+	
+	</div>
+	
+	<!--Pagination-->
+	<div class="container">
+		<div class="col-12">
+			<div class="col-2"> </div>
+			   <div th:if="${totalPages>1}" class="d-flex col-10" style="text-align: right;"> 
+				
+	    <div class="col-4 mt-2">
+			Total Rows: &nbsp;[[${totalItems}]] &nbsp; of:&nbsp; [[${currentPage}]]
+	   </div>
+	   <div class="col-8">
+	    <nav aria-label="...">
+  <ul class="pagination">
+     <li class="page-item">
+       <a class="page-link" href="#" th:href="@{'/archive/search-date/'+1+'/?dateNow='+${dateNow}}">First</a>
+    </li>
+    <li th:class="${currentPage>=totalPages ? 'page-item':'page-item disabled'}">
+      <a class="page-link" href="#" th:if="${currentPage>totalPages}" th:href="@{'/archive/search-date/'+${currentPage-1}+'/?dateNow='+${dateNow}}" tabindex="-1">Previous</a>
+      <span class="page-link" th:unless="${currentPage>=totalPages}">previous</span>
+    </li>
+    
+    <li th:each="i: ${#numbers.sequence(1,totalPages)}" th:class="${currentPage!=i ? 'page-item ' : 'page-item active'}">
+    <a  class="page-link" href="#" th:if="${currentPage!=i}" th:href="@{'/archive/search-date/'+${i}+'/?dateNow='+${dateNow}}" >[[${i}]]</a>
+    <a class="page-link" href="#" th:unless="${currentPage!=i}">[[${i}]]</a>
+    </li>
+    
+    <li th:class="${currentPage<totalPages ? 'page-item':'page-item disabled'}"> 
+      <a class="page-link" href="#" th:if="${currentPage<totalPages}" th:href="@{'/archive/search-date/'+${currentPage+1}+'/?dateNow='+${dateNow}}">Next</a>
+      <a class="page-link" href="#" th:unless="${currentPage<totalPages}">Next</a>
+    </li>
+    
+    <li th:class="${currentPage<totalPages ? 'page-item':'page-item disabled'}"> 
+     <a class="page-link" href="#" th:if="${currentPage<totalPages}" th:href="@{'/archive/search-date/'+${totalPages}+'/?dateNow='+${dateNow}}">Last</a>
+     <a class="page-link" href="#" th:unless="${currentPage<totalPages}">Last</a>
+    </li>
+    
+  </ul>
+</nav>
+	
+	   </div>
+	 </div>
+    </div>
+   </div>
+	
+
+	</section>
+	<section>
+	</section>
+	<footer id="hostTag" th:replace="layout/footer::footer"> </footer>
+
+
+</body>
+</html>

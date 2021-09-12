@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.themyleaf.org">
+<head th:replace="layout/navbar::html_header">
+	<meta charset="UTF-8" />
+	<title></title>
+
+</head>
+<body>
+	<nav th:replace="layout/navbar::navbar"></nav>
+	<section> 
+	<div class="container">
+		<div class="container col-6">
+    
+		<div class="text-center">
+			<h1>Sign in</h1>
+		</div>
+		<div class="text-center">
+			<p class="text-danger" th:if="${error != null}">Invalid email or password</p>
+		</div>
+		<div class="text-center">
+			<p class="text-warning" th:if="${logout !=null}">you have been logged out.</p>
+		</div>
+		<form th:action="@{/login/user}" th:object="${user}" method="POST">
+    <div class="form-group">
+      <label for="email" >Email address:</label>
+      <input type="email" class="form-control" id="email"  th:field="*{email}" required>
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" class="form-control" id="password"  th:field="*{password}"  minlength="4" maxlength="10" required >
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Sign up</button>
+  </form>
+		
+	<div class="form-group mt-2">
+	    <label>Register here?</label>
+		<h3><a href="#" th:href="@{/user/register}">Sign up</a></h3>
+	</div>
+	
+	</div>
+	</section>
+	
+	<footer id="hostTag" th:replace="layout/footer::footer"> </footer>
+
+</body>
+</html>

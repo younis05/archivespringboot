@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.themyleaf.org" >
+<head th:replace="layout/navbar::html_header">
+	<meta charset="UTF-8" />
+	<title></title>
+
+</head>
+<body>
+	<nav th:replace="layout/navbar::navbar"></nav>
+	<section> 
+	<div class="container col-6">
+    
+		<div class="text-center">
+		
+			<h1>Edit User</h1>
+		</div>
+		<form th:action="@{/user/edit}" th:object="${user}" method="POST">
+		<input type="hidden" class="form-control" id="id" th:field="*{id}"  required>
+    <div class="form-group">
+      <label for="email" >Email address:</label>
+      <input type="email" class="form-control" id="email" th:field="*{email}"  required>
+    </div>
+    <div class="form-group">
+      <label for="pwd">Password:</label>
+      <input type="password" class="form-control" id="pwd" th:field="*{password}" minlength="4" maxlength="10" required >
+    </div>
+    <div class="form-group">
+      <label for="firstname">First Name:</label>
+      <input type="text" class="form-control" id="firstname" th:field="*{firstName}" minlength="2" maxlength="20" required>
+     </div>
+     <div class="form-group">
+      <label for="lastname">Last Name:</label>
+      <input type="text" class="form-control" id="lastname" th:field="*{lastName}" minlength="2" maxlength="20" required>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Update</button>
+  </form>
+
+	</div>
+	
+	</section>
+	<footer id="hostTag" th:replace="layout/footer::footer"> </footer>
+
+</body>
+</html>

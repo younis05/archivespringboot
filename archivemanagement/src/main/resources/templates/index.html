@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.themyleaf.org" >
+<head th:replace="layout/navbar::html_header">
+	<meta charset="UTF-8" />
+	<title></title>
+
+</head>
+<body>
+	<nav th:replace="layout/navbar::navbar"></nav>
+	<section> 
+	<div class="container">
+		<div class="text-center">
+			<h1>Welcome to Archive Management</h1>
+		</div>
+	<div class="d-flex col-12">	
+	  <th:block th:if="${session.firstname} !=null">
+	<div class="col-4" >
+	    <h3> <img th:src="@{/img/user.png}" alt="" class="navimg" />
+	    <a href="#" th:href="@{/user/list-users}">List Users</a></h3>
+		<h3> <img th:src="@{/img/folder_data.png}" alt="" class="navimg" />
+		<a href="#" th:href="@{/category/list-categories}">List Categorie</a></h3>
+		<h3> <img th:src="@{/img/data.png}" alt="" class="navimg" />
+		<a href="#" th:href="@{/archive/}">List Archive</a></h3>
+	</div>
+	<div class="col-8 text-center">
+	<img src="/img/viktor.jpg" alt="" style="width: 40rem;height:30rem;" />
+	</div>
+	</th:block>
+	<th:block th:unless="${session.firstname} !=null">
+	<div class="col-12 text-center">
+	<img src="/img/viktor.jpg" alt="" style="width: 40rem;height:30rem;" />
+	</div>
+	</th:block>
+	</div>
+	
+	</div>
+	</section>
+	<footer id="hostTag" th:replace="layout/footer::footer"> </footer>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.themyleaf.org">
+<head th:replace="layout/navbar :: html_header">
+	<meta charset="UTF-8" />
+	<title></title>
+
+</head>
+<body>
+	<nav th:replace="layout/navbar :: navbar"></nav>
+	<section> 
+	<div class="container col-6">
+    
+		<div class="text-center">
+			<h1>Registration</h1>
+		</div>
+		<form th:action="@{/user/register-user}" th:object="${user}" method="POST">
+    <div class="form-group">
+      <label for="email" >Email address:</label>
+      <input type="email" class="form-control" id="email" name="email" th:value="${email}"  required>
+    </div>
+    <div class="form-group">
+      <label for="pwd">Password:</label>
+      <input type="password" class="form-control" id="pwd" name="password" th:value="${password}" minlength="4" maxlength="10" required >
+    </div>
+    <div class="form-group">
+      <label for="firstname">First Name:</label>
+      <input type="text" class="form-control" id="firstname" name="firstName" th:value="${firstName}" minlength="2" maxlength="20" required>
+     </div>
+     <div class="form-group">
+      <label for="lastname">Last Name:</label>
+      <input type="text" class="form-control" id="lastname" name="lastName" th:value="${lastName}" minlength="2" maxlength="20" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Sign up</button>
+  </form>
+		
+	<div class="form-group mt-2">
+	    <label>Already exists account?</label>
+		<h3><a href="#" th:href="@{/login}">Login</a></h3>
+	</div>
+  
+	</div>
+	
+	</section>
+	<footer id="hostTag" th:replace="layout/footer :: footer"> </footer>
+
+</body>
+</html>

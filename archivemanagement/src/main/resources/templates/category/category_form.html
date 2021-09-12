@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.themyleaf.org">
+<head th:replace="layout/navbar :: html_header">
+	<meta charset="UTF-8" />
+	<title></title>
+
+</head>
+<body>
+	<nav th:replace="layout/navbar :: navbar"></nav>
+	<section> 
+	<div class="container col-6">
+    
+		<div class="text-center">
+			<h1>Save Category</h1>
+		</div>
+		<form th:action="@{/category/register-category}" th:object="${category}" method="POST">
+    <div class="form-group">
+      <label for="name" >Name:</label>
+      <input type="text" class="form-control" id="name" th:field="*{name}" minlength="4" maxlength="20" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+  </form>
+
+	</div>
+	
+	</section>
+	<footer id="hostTag" th:replace="layout/footer :: footer"> </footer>
+
+</body>
+</html>
