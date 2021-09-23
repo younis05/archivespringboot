@@ -37,6 +37,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.younes.entity.Archive;
@@ -281,5 +282,13 @@ public class ArchiveController {
                 .body(resource);
 	       
          }
+	
+	@GetMapping("/search-auto")
+	@ResponseBody
+	public List<String> searchArchiveAuto(@RequestParam String term) {
+		
+		return archiveService.findArchiveAuto(term);
+	}
+	
 	
 }

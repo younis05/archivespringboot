@@ -24,6 +24,6 @@ public interface ArchiveServiceImpl {
 	public Page<Archive> findPaginated(String keyword,Integer pageNo,Integer pageSize);
 	public Page<Archive> findArchiveDate(Date dateNow,Integer pageNo,Integer pageSize);
 	public Page<Archive> findArchiveBetwenTwoDates(Date startDate,Date endDate,Category category,Integer pageNo,Integer pageSize);
-	
+	public List<String> findArchiveAuto(String keyword);
 	
 }

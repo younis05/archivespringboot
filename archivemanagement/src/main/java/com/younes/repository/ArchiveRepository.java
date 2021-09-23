@@ -2,11 +2,13 @@ package com.younes.repository;
 
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.younes.entity.Archive;
@@ -20,6 +22,9 @@ public interface ArchiveRepository extends JpaRepository<Archive, Long> {
 	@Query("SELECT a FROM Archive a WHERE CONCAT(a.title,a.numberArchive,"
 			+ "a.createDate,a.category.name) LIKE %?1% ORDER BY a.createDate DESC")
 	Page<Archive> findArchiveSearch(String keyword,Pageable pageable);
+	
+	@Query("SELECT a.title FROM Archive a WHERE a.title LIKE %?1%")
+	List<String> findArchiveAuto(String keyword);
 	
 	@Query("SELECT a FROM Archive a WHERE a.createDate = ?1 ORDER BY a.createDate DESC")
 	Page<Archive> findArchiveDate( Date dateNow,Pageable pageable);

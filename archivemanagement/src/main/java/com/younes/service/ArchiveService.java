@@ -92,6 +92,12 @@ public class ArchiveService implements ArchiveServiceImpl {
 		return archiveRepository.findArchiveBetwenTwoDates(startDate, endDate,category, pageable);
 	}
 
+	@Override
+	public List<String> findArchiveAuto(String keyword) {
+		
+		return archiveRepository.findArchiveAuto(keyword);
+	}
+
 	
 
 }

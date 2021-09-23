@@ -17,6 +17,16 @@
      <script th:src="@{/js/bootstrap.min.js}"></script>
      <script th:src="@{/js/sweetalert.min.js}"></script>
      <script th:src="@{/js/deleteinfo.js}"></script>
+     <!--<script th:src="@{/js/jquery.js}"></script>--> 
+     <script th:src="@{/js/jquery-ui.js}"></script>
+     <script type="text/javascript">
+	$(document).ready(function() {
+		
+		$('#archiveName').autocomplete({
+			source : '/archive/search-auto'
+		});
+	});
+</script>
 	</footer>
 	
 </body>
